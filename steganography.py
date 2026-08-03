@@ -32,14 +32,23 @@ END_MARKER = "#####"
 
 
 def text_to_binary(text):
-    """Convert a string into a single string of 0s and 1s (8 bits per character)."""
-    return ''.join(format(ord(char), '08b') for char in text)
+    """
+    Convert a string into a single string of 0s and 1s (8 bits per BYTE,
+    not per character). We encode to UTF-8 first so that any character -
+    including em dashes, accented letters, emojis, etc. - always maps to
+    a whole number of 8-bit bytes. (A previous version used ord(char)
+    directly, which breaks for any character outside the 0-255 range.)
+    """
+    utf8_bytes = text.encode('utf-8')
+    return ''.join(format(byte, '08b') for byte in utf8_bytes)
 
 
 def binary_to_text(binary):
-    """Convert a string of 0s and 1s back into readable text."""
-    chars = [binary[i:i+8] for i in range(0, len(binary), 8)]
-    return ''.join(chr(int(char, 2)) for char in chars)
+    """Convert a string of 0s and 1s back into readable text (UTF-8 decode)."""
+    # Only take full 8-bit groups; drop any leftover bits at the end.
+    usable_len = len(binary) - (len(binary) % 8)
+    byte_values = [int(binary[i:i+8], 2) for i in range(0, usable_len, 8)]
+    return bytes(byte_values).decode('utf-8', errors='ignore')
 
 
 def encode_image(input_image_path, secret_message, output_image_path):
