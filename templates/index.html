@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>🖼️ Image Steganography Tool</h1>
+    <p>Hide a secret text message inside a PNG image using the
+       Least Significant Bit (LSB) technique — the image looks
+       completely normal, but the hidden text can be extracted
+       back out.</p>
+    <p>
+        <a href="/encode"><button>Hide a Message</button></a>
+        &nbsp;
+        <a href="/decode"><button>Reveal a Message</button></a>
+    </p>
+</div>
+{% endblock %}

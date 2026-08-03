@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Image Steganography{% endblock %}</title>
+    <style>
+        body {
+            font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            max-width: 640px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #38bdf8; }
+        nav a {
+            color: #38bdf8;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 600;
+        }
+        nav { margin-bottom: 30px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
+        .card {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #334155;
+        }
+        input[type="file"], input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 18px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #e2e8f0;
+            box-sizing: border-box;
+        }
+        label { font-weight: 600; color: #cbd5e1; }
+        button {
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { background: #0ea5e9; }
+        .flash {
+            background: #7f1d1d;
+            color: #fecaca;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .result {
+            background: #14532d;
+            color: #bbf7d0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            word-break: break-word;
+        }
+        footer { margin-top: 40px; font-size: 13px; color: #64748b; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/encode">Hide a Message</a>
+        <a href="/decode">Reveal a Message</a>
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="flash">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <footer>Built with Python, Flask, and Pillow — LSB image steganography.</footer>
+</body>
+</html>

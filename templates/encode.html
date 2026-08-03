@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Hide a Message</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Source image (PNG only)</label>
+        <input type="file" name="image" accept=".png" required>
+
+        <label>Secret message</label>
+        <textarea name="message" rows="3" placeholder="Type your secret message..." required></textarea>
+
+        <button type="submit">Hide Message & Download</button>
+    </form>
+</div>
+{% endblock %}
