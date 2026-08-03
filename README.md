@@ -4,6 +4,9 @@ A live web version of the LSB image steganography tool. Upload a PNG
 and a secret message, download an image with the message hidden
 inside — or upload an encoded image to reveal what's hidden in it.
 
+<img width="780" height="514" alt="Image" src="https://github.com/user-attachments/assets/d38122f3-e3fc-4fc9-b204-bc5cba35c5ae" />
+
+
 **Live demo:** https://fatimasaleem.pythonanywhere.com
 
 ## Features
